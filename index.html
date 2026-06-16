@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" alt="logo" title="logo-ls" loading="lazy">
+        </div>
+    </header>
+    <div class="container">
+        <h1>Controle de Estoque</h1>
+        <div class="form-container">
+            <h2 id="form-title">Adicionar Registro</h2>
+            <form id="stock-form">
+                <input type="hidden" id="product-id">
+                <div class="input-group">
+                    <label for="name">Nome do Produto</label>
+                    <input type="text" id="name" required placeholder="Ex: Teclado Mecânico">
+                </div>
+                <div class="input-group">
+                    <label for="responsible">Responsável</label>
+                    <input type="text" id="responsible" required placeholder="Nome do responsável">
+                </div>
+                <div class="input-group">
+                    <label for="pickup-date">Data de Retirada</label>
+                    <input type="date" id="pickup-date" required>
+                </div>
+                <div class="input-group">
+                    <label for="return-date">Data de Devolução</label>
+                    <input type="date" id="return-date">
+                </div>
+                <div class="input-group">
+                    <label for="quantity">Quantidade</label>
+                    <input type="number" id="quantity" required min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="price">Preço Unitário (R$)</label>
+                    <input type="number" id="price" required min="0" step="0.01" placeholder="0.00">
+                </div>
+                <div class="button-group">
+                    <button type="submit" id="submit-btn" class="btn-primary">Salvar</button>
+                    <button type="button" id="cancel-btn" class="btn-secondary" style="display: none;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Lista de Movimentações</h2>
+                <button id="export-btn" class="btn-excel">Exportar para Excel</button>
+            </div>
+            <table id="stock-table">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Responsável</th>
+                        <th>Retirada</th>
+                        <th>Devolução</th>
+                        <th>Qtd</th>
+                        <th>Preço</th>
+                        <th>Total</th>
+                        <th>retirada de material</th>
+                    </tr>
+                </thead>
+                <tbody id="stock-list">
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="6">Valor Total em Estoque:</td>
+                        <td colspan="2" id="grand-total">R$ 0,00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
