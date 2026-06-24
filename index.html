@@ -3,83 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Estoque Ls</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="js/app.js" defer></script>
+    <title>Dashboard Mondelez - Snack Sampa Wave 2</title>
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="img/logo.png" alt="logo" title="logo-ls" loading="lazy">
+            <img src="assets/img/logo.png" alt="logo" title="logo-ls" loading="lazy">
         </div>
     </header>
-    <div class="container">
-        <h1>Controle de Estoque</h1>
-        <div class="form-container">
-            <h2 id="form-title">Adicionar Registro</h2>
-            <form id="stock-form">
-                <input type="hidden" id="product-id">
-                <div class="input-group">
-                    <label for="name">Nome do Produto</label>
-                    <input type="text" id="name" required placeholder="Ex: Teclado Mecânico">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-12">
+                <div class="container">
+        <header>
+            <div class="header-info">
+                <div class="logo-placeholder">LS</div>
+                <div class="company-details">
+                    <h1>Ls engenharia e climatização</h1>
+                    <p>Telefone: (11) 9947-46812 | CNPJ: 44.639.709/0001-07</p>
+                    <p>Email: leosantosengenharia@gmail.com</p>
+                    <p>Endereço: Rua Ricardo de Mello, 81 - Jardim Maristela</p>
                 </div>
-                <div class="input-group">
-                    <label for="responsible">Responsável</label>
-                    <input type="text" id="responsible" required placeholder="Nome do responsável">
-                </div>
-                <div class="input-group">
-                    <label for="pickup-date">Data de Entrada</label>
-                    <input type="date" id="pickup-date" required>
-                </div>
-                <div class="input-group">
-                    <label for="return-date">Data de Saída</label>
-                    <input type="date" id="return-date">
-                </div>
-                <div class="input-group">
-                    <label for="quantity">Quantidade</label>
-                    <input type="number" id="quantity" required min="0" placeholder="0">
-                </div>
-                <div class="input-group">
-                    <label for="price">Preço Unitário (R$)</label>
-                    <input type="number" id="price" required min="0" step="0.01" placeholder="0.00">
-                </div>
-                <div class="button-group">
-                    <button type="submit" id="submit-btn" class="btn-primary">Salvar</button>
-                    <button type="button" id="cancel-btn" class="btn-secondary" style="display: none;">Cancelar</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="table-container">
-            <div class="table-header">
-                <h2>Lista de Movimentações</h2>
-                <button id="export-btn" class="btn-excel">Exportar para Excel</button>
             </div>
-            <table id="stock-table">
-                <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Responsável</th>
-                        <th>Retirada</th>
-                        <th>Devolução</th>
-                        <th>Qtd</th>
-                        <th>Preço</th>
-                        <th>Total</th>
-                        <th>retirada de material</th>
-                    </tr>
-                </thead>
-                <tbody id="stock-list">
-                </tbody>
-                <tfoot>
-                    <tr class="total-row">
-                        <td colspan="6">Valor Total em Estoque:</td>
-                        <td colspan="2" id="grand-total">R$ 0,00</td>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="task-badge">
+                <span>Tarefa #75777068</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="summary-cards">
+                <div class="card">
+                    <h3>Projeto</h3>
+                    <p>MONDELEZ - SNACK SAMPA WAVE 2</p>
+                </div>
+                <div class="card">
+                    <h3>Responsável</h3>
+                    <p>Leonardo dos Santos</p>
+                </div>
+                <div class="card">
+                    <h3>Data</h3>
+                    <p>20/06/2026 às 17:00:00</p>
+                </div>
+                <div class="card">
+                    <h3>Tipo</h3>
+                    <p>Tarefa sem tipo (Obra)</p>
+                </div>
+            </section>
+
+            <div class="dashboard-grid">
+                <div class="chart-container">
+                    <h3>Status de Execução</h3>
+                    <canvas id="executionChart"></canvas>
+                </div>
+                <div class="info-panel">
+                    <h3>Informações Adicionais</h3>
+                    <div class="info-item">
+                        <strong>Orientação:</strong>
+                        <p>Obra</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>Relato de Execução:</strong>
+                        <textarea id="relato" placeholder="Digite o relato da execução..."></textarea>
+                    </div>
+                    <div class="info-item">
+                        <strong>Horário de Registro:</strong>
+                        <input type="time" id="registro-hora">
+                        <button onclick="salvarHorario()">Salvar Horário</button>
+                        <p id="horario-salvo"></p>
+                    </div>
+                </div>
+            </div>
+            <section class="gallery">
+                <h3>Anexos (5 Fotos)</h3>
+                <div class="photo-grid">
+                    <img src="assets/img/foto-1.jpeg" alt="foto-1" title="foto-1" loading="lazy">
+                    <img src="assets/img/foto-2.jpeg" alt="foto-2" title="foto-2" loading="lazy">
+                    <img src="assets/img/foto-2.jpeg" alt="foto-3" title="foto-3" loading="lazy">
+                    <img src="assets/img/foto-4.jpeg" alt="foto-4" title="foto-4" loading="lazy">
+                    <img src="assets/img/foto-5.jpeg" alt="foto-5" title="foto-5" loading="lazy">
+                    <img src="assets/img/foto-6.jpeg" alt="foto-6" title="foto-6" loading="lazy">
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2026 Ls engenharia e climatização</p>
+        </footer>
+    </div>
+            </div>
         </div>
     </div>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
